@@ -1,0 +1,33 @@
+package softcarpenpa;
+
+public class Exam  extends Homeworkparameters {
+	//These Attributes are only exclusive to the Exams
+	private String ExamSubject = "";
+	private String SeatNumber = "";
+
+	//Constructor
+	public Exam() {
+		
+	}
+	
+	public Exam(String ExamSubject, String SeatNumer)
+	{
+		setExam(ExamSubject, SeatNumber);
+	}
+	
+	//Methods
+	public void setExam(String ExamSubject, String SeatNumber){
+		this.ExamSubject = ExamSubject;
+		this.SeatNumber = SeatNumber;
+	}
+	
+	public String getExamSubject(){
+		return ExamSubject;
+		
+	}// Get the subject of the Exam
+	
+	public String getSeatNumber(){
+		return SeatNumber;
+	}// Get the Seat Number
+
+}//End of Class
