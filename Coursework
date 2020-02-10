@@ -1,0 +1,35 @@
+package softcarpenpa;
+
+public class Coursework extends Homeworkparameters {
+	//These Attributes are only exclusive to the Coursework
+	private String CourseworkSubject = "";
+	private int WordCount = 0;
+	
+	//Constructor
+
+		public Coursework() {
+			
+		}
+		
+		public Coursework(String ExamSubject, String SeatNumer)
+		{
+			setCoursework(CourseworkSubject, WordCount);
+		}
+
+	//Methods
+		
+		public void setCoursework(String CourseworkSubject, int WordCount){
+			this.CourseworkSubject = CourseworkSubject;
+			this.WordCount = WordCount;
+		}
+		
+		public String getCourseworkSubject(){
+			return CourseworkSubject;
+			
+		}// Get the subject of the Coursework
+		
+		public int getWordCount(){
+			return WordCount;
+		}// Get the word count
+
+	}//End of Class
