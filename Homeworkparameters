@@ -1,0 +1,36 @@
+package softcarpenpa;
+
+public class Homeworkparameters{
+	//Attributes
+	private String Title = "";
+	private int Day = 0;
+	private String Month = "";
+	private int Year = 0;
+
+	//Methods
+	public void setHomeworkparameters(String Title, int Day, String Month, int Year){
+	this.Title = Title;
+	this.Day = Day;
+	this.Month = Month;
+	this.Year = Year;
+
+	}
+	public String getTitle(){
+		return Title;
+	}//Get Title
+
+	public int getDay(){
+		return Day;
+		
+	}//Get Day
+
+	public String getMonth(){
+		return Month;
+	}//Get Month
+
+	public int getYear(){
+		return Year;
+	}//Get Year
+
+
+	}//End of class
