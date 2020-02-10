@@ -1,0 +1,404 @@
+package softcarpenpa;
+import java.util.Scanner;
+import java.util.ArrayList;
+import javax.swing.JOptionPane;
+
+public class HomeworkReminder {
+//public variables for use through of class such as Scanners and Array lists
+	public static Scanner in = new Scanner(System.in).useDelimiter("\\n"); //This Scanner will only read Strings as inputs
+	public static Scanner inint = new Scanner(System.in);                  //This Scanner will only read Integers as inputs
+	public static ArrayList<Coursework> mycoursework = new ArrayList<Coursework>();
+	public static ArrayList<Exam> myexams = new ArrayList<Exam>();
+	public static ArrayList<Exercise> myexercises = new ArrayList<Exercise>();
+	public static void main(String[] args) {menu();
+	}
+			public static void menu(){
+
+			
+			int menu = 0;
+			
+			do{
+		Scanner scanner = new Scanner(System.in);		
+		System.out.println("Hello, I am a Homework Companion. ");
+		System.out.println("If there was any homework today I am here to keep record of them.");
+		System.out.println("Press any button to bring up window");		
+		String yes = scanner.nextLine();//This is merely as a prompt to bring up the window.
+		System.out.println("Choose Homework type:");
+		String inputString = JOptionPane.showInputDialog(null, "Press: \n 1: for Exam  \n 2: for Coursework  \n 3: for Homework ");
+		menu = Integer.parseInt(inputString);
+
+				switch(menu){ //a switch statement is used in order to help navigate what the user wants to enter
+				
+				case 1:
+					//calls the method within this class that directs to Exams
+					examMenu();//You are able to change this providing it you change the "examMenu() {" in public static void examMenu() {
+					break;
+					
+				case 2:
+					//calls the method within this class that directs to Coursework
+					courseworkMenu();
+					break;
+				
+				case 3:
+					//calls the method within this class that directs to exercises/homework
+					ExerciseMenu();
+					break;
+				
+				}// indicates end of switch statement
+				
+			} while (menu != 0); //end of loop
+			
+		}// end of main method concerning main the 3 homework directory
+			
+				public static void examMenu() {
+				
+				int menu = 0; 
+				do{
+				
+				System.out.println("Exams");
+				String inputString = JOptionPane.showInputDialog(null, "Press: \n 1: Add Exam \n 2. Review Exam \n 3. Search Exam \n 4. Clear Exam \n 5. Return  ");
+				menu = Integer.parseInt(inputString);
+
+			
+			switch(menu){ // a switch instead if using an if statement 
+			case 1:
+				addExam();
+			break;
+			
+			case 2:
+				reviewExam();
+				break;
+				
+			case 3 :
+			searchExam();
+			break;
+			
+			case 4 :
+		    clearExam();
+		    break;
+		    
+			case 5:
+				menu(); 
+				break;
+			
+			}// indicates end of switch statement
+			
+		} while (menu != 0); //end of loop
+		
+	}// end of main method concerning exam directory
+
+
+
+		private static void addExam(){ // add an Exam
+			Exam newexam = new Exam();
+			
+			System.out.println("Title: ");
+			String Title = in.next();
+			
+			System.out.println("in which day ? (Integer) ");
+			int Day = inint.nextInt();
+			
+			System.out.println("in which month (Name)");
+			String Month = in.next();
+			
+			System.out.println("in which year ? ");
+			int Year = inint.nextInt();
+			
+			System.out.println("ExamSubject: ");
+			String ExamSubject = in.next();
+			
+			
+			System.out.println(" SeatNumber: ");
+			String SeatNumber = in.next();
+			
+			
+			newexam.setHomeworkparameters(Title, Day, Month, Year);
+			newexam.setExam( ExamSubject, SeatNumber); 
+			myexams.add(newexam);
+			
+		}
+		private static void reviewExam(){ // list an Exam 
+			for(int i = 0 ; i< myexams.size(); i++ ){
+				System.out.println(myexams.get(i).getExamSubject() + " " +
+				myexams.get(i).getSeatNumber()+ " " +
+				myexams.get(i).getTitle() + " " +
+				myexams.get(i).getDay() + " " +
+				myexams.get(i).getMonth() + " " +
+				myexams.get(i).getYear() +
+				myexams.get(i).getExamSubject()+ " " +
+				myexams.get(i).getSeatNumber());
+			
+				if(i==(myexams.size()- 1)){
+					System.out.println();	}
+			}
+		}
+		private static void searchExam(){ // search an Exam 
+			System.out.println("enter an exam name : ");
+			String Title = in.next();
+
+			for(int i = 0; i <myexams.size(); i++){
+				if(myexams.get(i).getTitle() == Title){
+					//If title matches found in database then Exam is displayed
+					
+					System.out.println(myexams.get(i).getTitle()+ " " + 
+							myexams.get(i).getDay()+ " " +
+							myexams.get(i).getMonth()+ " " +
+							myexams.get(i).getYear()+ " " +
+							myexams.get(i).getExamSubject()+ " " +
+							myexams.get(i).getSeatNumber()+ "\n"); 
+					//Along with the other attributes of the exam
+				}
+				
+			}
+			
+		}
+		
+	
+			
+				private static void clearExam() { // delete an exam  
+					
+					
+					System.out.println("please write the title of the Exam that you want to delete");
+					String Title = in.next();
+					System.out.println("Trying to find the Exam "+ Title);
+					for(int i = myexams.size() -1; 1>=0; --i){
+						System.out.println("searching"+ myexams.get(i).getExamSubject());
+						if (myexams.get(i).getTitle().equals(Title)){
+							System.out.println("its been found "+ i);
+							myexams.remove(i);
+							System.out.println(" Done ");	
+						}
+						
+					}
+					
+				}
+				
+				
+				public static void courseworkMenu(){
+
+
+					
+				int menu = 0;
+				
+				do{
+					System.out.println("Exams");
+				String inputString = JOptionPane.showInputDialog(null, "Press: \n 1. Add  Coursework \n 2. Review Coursework \n 3. Search Coursework \n 4. Clear Coursework \n 5. Return  ");
+				menu = Integer.parseInt(inputString);
+				switch(menu){
+			case 1:
+				addCoursework();
+				break;
+			case 2 : 
+				reviewCoursework();
+				break;
+			case 3:
+				searchCoursework();
+				break;
+			case 4:
+				clearCoursework();
+				break;
+				
+			case 5:
+				menu(); 
+				break;
+
+			}
+				
+		} while(menu != 0);
+				
+	}
+				
+				
+		private static void addCoursework() { // add coursework
+			Coursework newCoursework = new Coursework();
+			
+			System.out.println("Title: ");
+			String Title = in.next();
+			
+			System.out.println("in which day ? (Integer) ");
+			int Day = inint.nextInt();
+			
+			System.out.println("in which month (Name)  ");
+			String Month = in.next();
+			
+			System.out.println("in which year ? ");
+			int Year = inint.nextInt();
+			
+			
+			System.out.println("add Coursework Subject: ");
+			String CourseworkSubject = in.next();
+			
+			
+			System.out.println("add WordCount: ");
+			int WordCount = inint.nextInt();
+			
+			
+			newCoursework.setHomeworkparameters(Title, Day, Month, Year);
+			newCoursework.setCoursework( CourseworkSubject, WordCount); 
+			mycoursework.add(newCoursework);
+		
+			}
+		
+			
+		
+		private static void reviewCoursework(){ // list Coursework
+			for(int i = 0 ; i< mycoursework.size(); i++ ){
+				System.out.println(mycoursework.get(i).getCourseworkSubject() + " " +
+						mycoursework.get(i).getWordCount() + " Words " +
+						mycoursework.get(i).getTitle() + " " +
+						mycoursework.get(i).getDay() + " " +
+						mycoursework.get(i).getMonth() + " " +
+						mycoursework.get(i).getYear());
+			
+				if(i==(mycoursework.size()- 1)){
+
+				}
+			}
+		}
+			private static void searchCoursework(){ // search Coursework
+				System.out.println("enter Coursework name : ");
+				String Title = in.next();
+
+				for(int i = 0; i <mycoursework.size(); i++){
+					if(mycoursework.get(i).getTitle() == Title){
+					
+						System.out.println(mycoursework.get(i).getTitle()+ " " + 
+								mycoursework.get(i).getDay()+ " " +
+								mycoursework.get(i).getMonth()+ " " +
+								mycoursework.get(i).getYear()+ " " +
+								mycoursework.get(i).getCourseworkSubject()+ " " +
+								mycoursework.get(i).getWordCount()+ "\n"); 
+					}
+				}
+			}
+			
+
+			
+			private static void clearCoursework() { // delete Coursework 
+				
+				
+				System.out.println("please write the title of the Coursework that you want to delete");
+				String Title = in.next();
+				System.out.println("Trying to find the Coursework file "+ Title);
+				for(int i = mycoursework.size() -1; 1>=0; --i){
+					System.out.println("searching"+ mycoursework.get(i).getCourseworkSubject());
+					if (mycoursework.get(i).getTitle().equals(Title)){
+						System.out.println("it has been found "+ i);
+						mycoursework.remove(i);
+						System.out.println(" Done ");	
+					}
+				}
+						}
+			
+			public static void ExerciseMenu(){
+
+
+				
+			int menu = 0;
+			
+			do{
+			System.out.println("Homework");
+			String inputString = JOptionPane.showInputDialog(null, "Press: \n 1  Add  Homework \n 2. Review Homework \n 3. Search Homework \n 4. Clear Homework \n 5. Return  ");
+			menu = Integer.parseInt(inputString);
+			switch(menu){
+			
+case 1 :
+	addExercise();
+	break;
+case 2:
+	reviewExercise();
+	break; 
+case 3:
+	 searchExercise();
+	break; 
+	
+case 4:
+	clearExercise(); 
+	break;
+	
+case 5:
+	menu(); 
+	break;
+				}
+			
+			}while(menu != 0);
+			
+}
+			
+			
+			private static void addExercise() { // adds homework
+				Exercise newexercise = new Exercise();
+
+				System.out.println("Title: ");
+				String Title = in.next();
+				
+				System.out.println("in which day ? (Integer)  ");
+				int Day = inint.nextInt();
+				
+				System.out.println("in which month (Name)  ");
+				String Month = in.next();
+				
+				System.out.println("in which year ? ");
+				int Year = in.nextInt();
+				
+				System.out.println("add Exercise Number: ");
+				int ExerciseNumber = inint.nextInt();
+				
+				newexercise.setHomeworkparameters(Title, Day, Month, Year);
+				newexercise.setExercise(ExerciseNumber); 
+				myexercises.add(newexercise);
+			
+			}
+			
+			
+
+			private static void reviewExercise(){ // lists homework
+				for(int i = 0 ; i< myexercises.size(); i++ ){
+					System.out.println(myexercises.get(i).getTitle() + " " +
+							myexercises.get(i). getDay() + " " +
+							myexercises.get(i).getMonth()+ " " +
+							myexercises.get(i).getYear() + " " +
+							myexercises.get(i).getExerciseNumber());
+				
+
+					if(i==(myexercises.size()- 1)){
+
+					}
+				}
+			}
+			private static void searchExercise(){ // search an homework
+				System.out.println("enter homework name : ");
+				String Title = in.next();
+
+				for(int i = 0; i <myexercises.size(); i++){
+					if(myexercises.get(i).getTitle() == Title){
+						System.out.println(myexercises.get(i).getTitle()+ " " + 
+								myexercises.get(i).getDay()+ " " +
+								myexercises.get(i).getMonth()+ " " +
+								myexercises.get(i).getYear()+ " " +
+								myexercises.get(i).getExerciseNumber()+ "\n"); 
+
+					}
+				}
+			}
+			
+			
+			private static void clearExercise() { // delete homework 
+				
+				
+				System.out.println("please write the title of the Homework that you want to delete");
+				String Title = in.next();
+				System.out.println("Trying to find the homework "+ Title);
+				for(int i = myexercises.size() -1; 1>=0; --i){
+					System.out.println("searching"+ myexercises.get(i).getTitle());
+					if (myexercises.get(i).getTitle().equals(Title)){
+						System.out.println("its been found "+ i);
+						myexercises.remove(i);
+						System.out.println(" Done ");	
+					}
+				}
+						}
+		
+			
+			
+		}
