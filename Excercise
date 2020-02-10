@@ -1,0 +1,28 @@
+package softcarpenpa;
+
+public class Exercise extends Homeworkparameters {
+	//These Attributes are only exclusive to Exercise
+	private int ExerciseNumber = 0;
+	
+	//Constructor
+
+		public Exercise() {
+			
+		}
+		
+		public Exercise(int ExerciseNumber)
+		{
+			setExercise(ExerciseNumber);
+		}
+
+	//Methods
+		
+		public void setExercise(int ExerciseNumber){
+			this.ExerciseNumber = ExerciseNumber;
+		}
+		
+		public int getExerciseNumber(){
+			return ExerciseNumber;
+		}// Get the Exercise Number
+
+	}//End of Class
